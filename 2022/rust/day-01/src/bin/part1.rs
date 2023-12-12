@@ -5,7 +5,19 @@ fn main() {
 }
 
 fn resolve(input: &str) -> String {
-    "24000".to_string()
+    let result = input
+        .split("\n\n")
+        .map(|elf_load| {
+            elf_load
+                .split("\n")
+                .map(|item| 
+                    item.parse::<u32>().unwrap_or(0)
+                )
+                .sum::<u32>()
+        })
+        .max()
+        .unwrap();
+    result.to_string()
 }
 
 #[cfg(test)]
@@ -14,7 +26,8 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = resolve("1000
+        let result = resolve(
+            "1000
 2000
 3000
 
@@ -27,7 +40,8 @@ mod tests {
 8000
 9000
 
-10000");
+10000",
+        );
         assert_eq!(result, "24000".to_string());
     }
 }
