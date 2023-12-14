@@ -1,3 +1,6 @@
+// https://adventofcode.com/2022/day/2
+// A rock, B paper, C scissors
+// X rock, Y paper, Z scissors
 fn main() {
     let input = include_str!("./input1.txt");
     let output = resolve(input);
